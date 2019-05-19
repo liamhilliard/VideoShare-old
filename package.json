@@ -1,0 +1,11 @@
+{
+  "name": "videoshare",
+  "version": "1.0.0",
+  "description": "An app for synchronised video playing with multiple clients",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Liam Hilliard",
+  "license": "GPL-3.0"
+}
