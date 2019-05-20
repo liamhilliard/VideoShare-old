@@ -1,7 +1,7 @@
 (function(){
 	"use strict";
 
-	const ws = new WebSocket('ws://localhost:5001/videoshare-68389/us-central1/app');
+	const ws = new WebSocket('ws://'+ window.location.hostname +'/');
 
 	ws.addEventListener('open', function(event){
 		console.log('ws: open', event);
