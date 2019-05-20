@@ -1,4 +1,4 @@
-const conf = require('../conf.js');
+const conf = require('./conf.js');
 const express = require('express');
 
 const app = express();
