@@ -21,14 +21,14 @@ app.use((request, response, next) => {
 
 // Force https
 app.use((request, response, next) => {
-	console.log('x-forwarded-proto', request['x-forwarded-proto']);
+	console.log('x-forwarded-proto', request.headers['x-forwarded-proto']);
 	return next();
 });
 
 app.get('/', (request, response) => {
 	response.sendFile('index.html', { root: conf.ROOT });
 });
-
+console.log('### root: ' + conf.ROOT);
 app.use(express.static(conf.ROOT));
 
 app.listen(port, () => {
