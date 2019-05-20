@@ -7,14 +7,14 @@ const app = express();
 const port = process.env.PORT || 5001;
 
 app.use((request, response, next) => {
-	console.log('--> new request');
-	console.log('request.socket', request.socket)
-	console.log('request.httpVersion', request.httpVersion);
-	console.log('request.headers', request.headers);
-	console.log('request.upgrade', request.upgrade);
-	console.log('request.url', request.url);
-	console.log('request.method', request.method);
-	console.log('request.statusCode', request.statusCode);
+	//console.log('--> new request');
+	//console.log('request.socket', request.socket)
+	//console.log('request.httpVersion', request.httpVersion);
+	//console.log('request.headers', request.headers);
+	//console.log('request.upgrade', request.upgrade);
+	//console.log('request.url', request.url);
+	//console.log('request.method', request.method);
+	//console.log('request.statusCode', request.statusCode);
 
 	return next();
 });
