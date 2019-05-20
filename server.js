@@ -1,5 +1,7 @@
+"use strict";
 const conf = require('./conf.js');
 const express = require('express');
+const https = require('https');
 
 const app = express();
 console.log('------- STARTING APP -------');
@@ -23,3 +25,5 @@ app.get('/', (request, response) => {
 
 app.use(express.static(conf.ROOT));
 
+
+https.createServer({}, app).listen(443);
