@@ -6,7 +6,7 @@ const https = require('https');
 const app = express();
 const port = process.env.PORT || 5001;
 
-app.use(function(request, response, next){
+app.use((request, response, next) => {
 	console.log('--> new request');
 	console.log('request.socket', request.socket)
 	console.log('request.httpVersion', request.httpVersion);
@@ -16,6 +16,12 @@ app.use(function(request, response, next){
 	console.log('request.method', request.method);
 	console.log('request.statusCode', request.statusCode);
 
+	return next();
+});
+
+// Force https
+app.use((request, response, next) => {
+	console.log('x-forwarded-proto', request['x-forwarded-proto']);
 	return next();
 });
 
