@@ -4,8 +4,7 @@ const express = require('express');
 const https = require('https');
 
 const app = express();
-
-console.log('------- STARTING APP -------');
+const port = process.env.PORT || 5001;
 
 app.use(function(request, response, next){
 	console.log('--> new request');
@@ -26,4 +25,6 @@ app.get('/', (request, response) => {
 
 app.use(express.static(conf.ROOT));
 
-app.listen();
+app.listen(port, () => {
+	console.log('### App listening on port '+ port);
+});
