@@ -4,6 +4,7 @@ const express = require('express');
 const https = require('https');
 
 const app = express();
+
 console.log('------- STARTING APP -------');
 
 app.use(function(request, response, next){
@@ -25,5 +26,4 @@ app.get('/', (request, response) => {
 
 app.use(express.static(conf.ROOT));
 
-
-https.createServer({}, app).listen(443);
+app.listen();
