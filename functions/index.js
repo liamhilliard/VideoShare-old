@@ -1,6 +1,11 @@
 const functions = require('firebase-functions');
 const conf = require('../conf.js');
+const express = require('express');
 
-exports.helloWorld = functions.https.onRequest((request, response) => {
+const app = express();
+
+app.get('/', (request, response) => {
     response.sendFile('index.html', { root: conf.ROOT });
 });
+
+exports.app = functions.https.onRequest(app);

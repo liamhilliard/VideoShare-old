@@ -1,7 +1,7 @@
 (function(){
 	"use strict";
 
-	const ws = new WebSocket('ws://localhost:5000');
+	const ws = new WebSocket('ws://localhost:5001');
 
 	ws.addEventListener('open', function(event){
 		console.log('ws: open', event);
