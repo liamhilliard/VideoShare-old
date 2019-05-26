@@ -4,7 +4,7 @@
   "description": "An app for synchronised video playing with multiple clients",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "startdev": "nodemon --exec \"heroku local\" --signal SIGTERM",
     "logs": "heroku logs -t -a videoshare"
   },
   "author": "Liam Hilliard",
@@ -13,5 +13,8 @@
     "body-parser": "^1.19.0",
     "express": "^4.17.0",
     "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.0"
   }
 }
