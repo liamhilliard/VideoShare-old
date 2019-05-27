@@ -5,7 +5,7 @@ const coreRouter = express.Router();
 const webSocketConnection = require('./webSocketConnection.js');
 
 // Wire up app modules
-coreRouter.use('/conn', webSocketConnection);
+coreRouter.use('/wsconn', webSocketConnection);
 
 // Serve static files
 coreRouter.use(express.static(conf.ROOT));
