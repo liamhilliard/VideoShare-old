@@ -21,7 +21,7 @@ app.use((request, response, next) => {
 
 // Force https
 app.use((request, response, next) => {
-	console.log('x-forwarded-proto', request.headers['x-forwarded-proto']);
+	console.log('videoshare server: x-forwarded-proto', request.headers['x-forwarded-proto']);
 	return next();
 });
 

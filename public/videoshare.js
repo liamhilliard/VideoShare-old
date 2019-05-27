@@ -1,14 +1,16 @@
 (function(){
 	"use strict";
 
-	const ws = new WebSocket('ws://'+ window.location.host +'/');
+	// We use location.host over location.hostname as host includes the port number.
+	// This is useful when testing on localhost.
+	const webSocketConnection = new WebSocket('ws://'+ window.location.host +'/');
 
-	ws.addEventListener('open', function(event){
+	webSocketConnection.addEventListener('open', function(event){
 		console.log('ws: open', event);
 		ws.send('Hello, server world!');
 	});
 
-	ws.addEventListener('message', function(event){
+	webSocketConnection.addEventListener('message', function(event){
 		console.log('ws: message', event);
 	});
 
