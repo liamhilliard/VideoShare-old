@@ -6,7 +6,7 @@ const coreRouter = express.Router();
 module.exports = function(app){
     // Set up WebSockets
     const WebSocket = require('ws');
-    const WebSocketServer = new WebSocket.Server({ app });
+    const WebSocketServer = new WebSocket.Server({ server:app });
 
     WebSocketServer.on('connection', function(socket){
         console.log('### connection established');
