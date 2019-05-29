@@ -1,11 +1,12 @@
 "use strict";
 const express = require('express');
-const coreController = require('./routes/core.controller');
 const app = express();
 const port = process.env.PORT || 5001;
+const coreController = require('./routes/core.controller')(app);
 
-app.use('/', coreController(app));
+app.use('/', coreController.router);
 
-app.listen(port, () => {
+const server = app.listen(port, () => {
 	console.log('### App listening on port '+ port);
+	coreController.setupUpgradeHandler(server);
 });

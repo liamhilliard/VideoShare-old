@@ -40,5 +40,17 @@ module.exports = function(app){
     
     // Serve static files
     coreRouter.use(express.static(conf.ROOT));   
-    return coreRouter; 
+    return {
+        router:coreRouter,
+        setupUpgradeHandler: function(server){
+            server.on('upgrade', function(request, socket, head){
+                console.log('### upgrade event');
+                WebSocketServer.handleUpgrade(request, socket, head, (ws) => {
+                    console.log('### handleUpgrade done');
+                    WebSocketServer.emit('connection', ws, request);
+                });
+            });
+
+        }
+    }; 
 };
