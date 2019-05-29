@@ -2,12 +2,23 @@
 const express = require('express');
 const conf = require('../conf');
 const coreRouter = express.Router();
-const webSocketConnection = require('./webSocketConnection.js');
 
-// Wire up app modules
-coreRouter.get('/wsconn', webSocketConnection);
+module.exports = function(app){
+    // Set up WebSockets
+    const WebSocket = require('ws');
+    const WebSocketServer = new WebSocket.Server({ server: app, path: '/wsconn' });
 
-// Serve static files
-coreRouter.use(express.static(conf.ROOT));
+    WebSocketServer.on('connection', function(socket){
+        console.log('connection established');
 
-module.exports = coreRouter;
+        socket.on('message', function(message){
+            console.log('message', message);
+        });
+
+        socket.send('Hello, WS world!');
+    });
+
+    // Serve static files
+    coreRouter.use(express.static(conf.ROOT));   
+    return coreRouter; 
+};
