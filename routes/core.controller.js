@@ -6,7 +6,7 @@ const coreRouter = express.Router();
 module.exports = function(app){
     // Set up WebSockets
     const WebSocket = require('ws');
-    const WebSocketServer = new WebSocket.Server({ noServer: true });
+    const WebSocketServer = new WebSocket.Server({ app });
 
     WebSocketServer.on('connection', function(socket){
         console.log('### connection established');
@@ -23,13 +23,20 @@ module.exports = function(app){
         socket.send('Hello, WS world!');
     });
 
-    app.on('upgrade', function(request, socket, head){
-        console.log('### upgrade event');
-        WebSocketServer.handleUpgrade(request, socket, head, (ws) => {
-            console.log('### handleUpgrade done');
-            WebSocketServer.emit('connection', ws, request);
-        });
-    });
+    // app.on('upgrade', function(request, socket, head){
+    //     console.log('### upgrade event');
+    //     WebSocketServer.handleUpgrade(request, socket, head, (ws) => {
+    //         console.log('### handleUpgrade done');
+    //         WebSocketServer.emit('connection', ws, request);
+    //     });
+    // });
+  
+    // app.use((request, response, next) => {
+    //     console.dir(request.headers, {depth: null, colors: true});
+
+    //     const {connection, upgrade} = response.headers;
+    //     if(connection === 'Upgrade' && upgrade === '')
+    // });
     
     // Serve static files
     coreRouter.use(express.static(conf.ROOT));   
