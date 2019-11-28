@@ -1,12 +1,17 @@
 "use strict";
+const port = process.env.PORT || 5001;
+const path = require('path');
+const bodyParser = require('body-parser');
 const express = require('express');
 const app = express();
-const port = process.env.PORT || 5001;
-const coreController = require('./routes/core.controller')(app);
+const server = require('http').createServer(app);
 
-app.use('/', coreController.router);
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(bodyParser.json());
 
-const server = app.listen(port, () => {
-	console.log('### App listening on port '+ port);
-	coreController.setupUpgradeHandler(server);
+const socketController = require('./routes/socket.controller')(server);
+app.use('/', socketController);
+
+server.listen(port, () => {
+	console.log('### VideoShare listening on port '+ port);
 });
